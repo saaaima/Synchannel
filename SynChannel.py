@@ -108,17 +108,8 @@ df.loc[(df['clean channel'].isin(offset_channel)) & (df['tv channel name'].str.c
 df.loc[(df['clean channel'].isin(offset_channel)) & (df['tv channel name'].str.contains('EAST')),'airing time local']\
         =df['airing time utc'].apply(lambda x: utc_to_eastern(x))
 
-
-
-
-
-
-
-
-
-
- 
-      
+df.loc[(~df['clean channel'].isin(offset_channel)) & (~df['tv channel name'].str.contains('EAST')),'airing time local']\
+        =df['airing time utc'].apply(lambda x: utc_to_eastern(x))
 df.to_csv('/Users/masai/Downloads/clean.csv',index=False)
 
 
